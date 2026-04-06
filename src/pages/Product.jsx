@@ -179,7 +179,7 @@ function Product() {
 
         {loading ? (
           <div className="col-span-full text-center text-gray-500 text-[16px] mt-24">
-            Loading products...
+            Loading all products...
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="col-span-full text-center text-gray-500 text-[16px] mt-24">

@@ -147,7 +147,9 @@ function Deals() {
                     </div>
 
                     {loading ? (
-                        <div className="text-center py-20 text-muted-foreground">Loading deals…</div>
+                        <div className="text-center py-20 text-muted-foreground">
+                            <div className="text-lg font-semibold">Loading hot deals...</div>
+                        </div>
                     ) : dealProducts.length === 0 ? (
                         <div className="text-center py-20 text-muted-foreground">No deals available right now.</div>
                     ) : (

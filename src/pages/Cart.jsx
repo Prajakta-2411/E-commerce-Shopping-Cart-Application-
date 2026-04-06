@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Minus, Plus, Trash2, ShoppingBag, ShoppingCart, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
+import { formatPrice } from "@/lib/utils";
 
 function Cart() {
   const { items } = useSelector((state) => state.cart);
@@ -81,19 +82,19 @@ function Cart() {
           <div className="lg:col-span-2 space-y-6">
             {items.map((item) => (
               <Card key={item.id} className="shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex gap-6">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex gap-4 sm:gap-6">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-24 h-24 object-contain rounded-lg bg-gray-50"
+                      className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg bg-gray-50"
                     />
                     <div className="flex-1">
                       <h3 className="font-semibold text-lg mb-2 line-clamp-2">{item.title}</h3>
                       <p className="text-sm text-gray-600 mb-4 line-clamp-2">
                         {item.description}
                       </p>
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-3">
                           <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-1">
                             <Button
@@ -121,13 +122,13 @@ function Cart() {
                             onClick={() => handleRemoveItem(item.id, item.title)}
                             className="text-red-500 hover:text-red-700 hover:bg-red-50"
                           >
-                            <Trash2 size={16} className="mr-2" />
-                            Remove
+                            <Trash2 size={16} className="sm:mr-2" />
+                            <span className="hidden sm:inline">Remove</span>
                           </Button>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-xl text-purple-600">Rs. {Math.floor(item.price * (item.quantity || 1) * 100)}</p>
-                          <p className="text-sm text-gray-500">Rs. {Math.floor(item.price * 100)} each</p>
+                          <p className="font-bold text-xl text-purple-600">{formatPrice(item.price * (item.quantity || 1) * 100)}</p>
+                          <p className="text-sm text-gray-500">{formatPrice(item.price * 100)} each</p>
                         </div>
                       </div>
                     </div>
@@ -150,20 +151,20 @@ function Cart() {
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subtotal ({items.length} items)</span>
-                    <span className="font-medium">Rs. {Math.floor(totalPrice * 100)}</span>
+                    <span className="font-medium">{formatPrice(totalPrice * 100)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
                     <span className="font-medium text-green-600">Free</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax (18%)</span>
-                    <span className="font-medium">Rs. {Math.floor(totalPrice * 100 * 0.18)}</span>
+                    <span className="text-gray-600">Tax (12%)</span>
+                    <span className="font-medium">{formatPrice(totalPrice * 100 * 0.12)}</span>
                   </div>
                   <hr className="border-gray-200" />
                   <div className="flex justify-between text-xl font-bold">
                     <span>Total</span>
-                    <span className="text-purple-600">Rs. {Math.floor(totalPrice * 100 * 1.18)}</span>
+                    <span className="text-purple-600">{formatPrice(totalPrice * 100 * 1.12)}</span>
                   </div>
                 </div>
 
@@ -179,11 +180,11 @@ function Cart() {
                 <div className="mt-6 p-4 bg-purple-50 rounded-lg">
                   <div className="flex items-center gap-2 text-sm text-purple-700">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Free shipping on orders over Rs. 5000</span>
+                    <span>Free shipping on orders over ₹ 5000</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-purple-700 mt-2">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>30-day return policy</span>
+                    <span>10 days return policy</span>
                   </div>
                 </div>
               </CardContent>

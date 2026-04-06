@@ -168,7 +168,7 @@ function Categories() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
                         {loading ? (
                             <div className="col-span-full text-center py-12">
-                                <div className="text-gray-500 text-base sm:text-lg">Loading products...</div>
+                                <div className="text-gray-500 text-base sm:text-lg">Loading categories...</div>
                             </div>
                         ) : products.length === 0 ? (
                             <div className="col-span-full text-center py-12">

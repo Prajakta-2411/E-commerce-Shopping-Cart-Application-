@@ -8,6 +8,7 @@ import ProductCard from "../components/Card";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, ShoppingCart, Trash2, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import { formatPrice } from "@/lib/utils";
 
 function Wishlist() {
     const dispatch = useDispatch();
@@ -106,7 +107,7 @@ function Wishlist() {
                                         {item.description}
                                     </p>
                                     <p className="text-lg font-bold text-purple-600 mb-3">
-                                        Rs. {Math.floor(item.price * 100)}
+                                        {formatPrice(item.price * 100)}
                                     </p>
                                 </Link>
 

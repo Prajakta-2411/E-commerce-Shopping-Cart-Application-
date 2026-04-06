@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Trash2, Plus, Minus, CreditCard, MapPin, User } from "lucide-react";
 import { toast } from "sonner";
 import { useUser, SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import { formatPrice } from "@/lib/utils";
 
 
 function Checkout() {
@@ -326,7 +327,7 @@ function Checkout() {
                                                     />
                                                     <div className="flex-1 min-w-0">
                                                         <p className="text-sm font-medium truncate">{item.title}</p>
-                                                        <p className="text-sm text-gray-600">Rs.{convertToINR(item.price)}</p>
+                                                        <p className="text-sm text-gray-600">{formatPrice(convertToINR(item.price))}</p>
                                                     </div>
                                                     <Button
                                                         variant="ghost"
@@ -343,19 +344,19 @@ function Checkout() {
                                         <div className="border-t pt-4 space-y-2">
                                             <div className="flex justify-between">
                                                 <span>Subtotal</span>
-                                                <span>Rs.{convertToINR(total)}</span>
+                                                <span>{formatPrice(convertToINR(total))}</span>
                                             </div>
                                             <div className="flex justify-between">
                                                 <span>Shipping</span>
                                                 <span className="text-green-600">Free</span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span>Tax</span>
-                                                <span>Rs.{convertToINR(total * 0.08)}</span>
+                                                <span>Tax (12%)</span>
+                                                <span>{formatPrice(convertToINR(total * 0.12))}</span>
                                             </div>
                                             <div className="border-t pt-2 flex justify-between font-bold text-lg">
                                                 <span>Total</span>
-                                                <span className="text-purple-600">Rs.{convertToINR(total + total * 0.08)}</span>
+                                                <span className="text-purple-600">{formatPrice(convertToINR(total + total * 0.12))}</span>
                                             </div>
                                         </div>
 
@@ -365,7 +366,7 @@ function Checkout() {
                                             size="lg"
                                         >
                                             <CreditCard className="mr-2 h-5 w-5" />
-                                            Place Order - Rs.{convertToINR(total + total * 0.08)}
+                                            Place Order - {formatPrice(convertToINR(total + total * 0.12))}
                                         </Button>
 
                                         <p className="text-xs text-gray-500 text-center">

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../redux/wishlistSlice";
 import { addToCart } from "../redux/cartSlice";
 import { toast } from "sonner";
+import { formatPrice } from "@/lib/utils";
 
 function Card({ img, title, price, productId, rating = 4, showAddToCart = true, badgeText, oldPrice }) {
   if (productId == null) {
@@ -106,11 +107,11 @@ function Card({ img, title, price, productId, rating = 4, showAddToCart = true, 
           {/* Price */}
           <div className="flex flex-col gap-1">
             <p className="text-lg font-semibold text-black">
-              ₹ {Math.floor(displayPrice * 83)}
+              {formatPrice(displayPrice * 83)}
             </p>
             {displayOldPrice ? (
               <p className="text-sm text-muted-foreground line-through">
-                ₹ {Math.floor(displayOldPrice * 83)}
+                {formatPrice(displayOldPrice * 83)}
               </p>
             ) : null}
           </div>

@@ -7,6 +7,7 @@ import { ArrowLeft, ShoppingCart, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useUser, SignInButton } from "@clerk/clerk-react";
+import { formatPrice } from "@/lib/utils";
 
 function Details() {
   const { productId } = useParams();
@@ -57,10 +58,7 @@ function Details() {
         <div className="flex flex-col items-center justify-center gap-6">
           <div className="text-center text-gray-500">
             <div className="text-lg font-semibold mb-2">
-              Loading product...
-            </div>
-            <div className="h-2 w-48 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full w-1/3 bg-purple-700 animate-pulse" />
+              Loading product details...
             </div>
           </div>
         </div>
@@ -102,7 +100,7 @@ function Details() {
               </p>
 
               <p className="text-sm mt-4">
-                Rs. {Math.floor(product.price * 83)}
+                {formatPrice(product.price * 83)}
               </p>
 
               <div className="flex flex-wrap gap-3 mt-4">
@@ -132,7 +130,7 @@ function Details() {
                 ) : (
                   <SignInButton mode="modal">
                     <button className="px-5 py-2 text-white bg-black text-sm font-medium rounded-lg cursor-pointer hover:bg-purple-700">
-                      Buy at Rs. {Math.floor(product.price * 83)}
+                      Buy at {formatPrice(product.price * 83)}
                     </button>
                   </SignInButton>
                 )}

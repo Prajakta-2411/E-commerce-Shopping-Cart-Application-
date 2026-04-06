@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { addToWishlist } from "../redux/wishlistSlice";
+import { formatPrice } from "@/lib/utils";
 
 function Category() {
     const { categoryName } = useParams();
@@ -87,11 +88,7 @@ function Category() {
                         Back to Home
                     </Button>
                     <div className="text-center py-20">
-                        <div className="text-6xl mb-4">⏳</div>
-                        <div className="text-lg font-semibold mb-2">Loading products...</div>
-                        <div className="h-2 w-48 bg-gray-200 rounded-full overflow-hidden mx-auto">
-                            <div className="h-full w-1/3 bg-purple-700 animate-pulse" />
-                        </div>
+                        <div className="text-lg font-semibold mb-2">Loading {categoryName.toLowerCase()} products...</div>
                     </div>
                 </div>
             </div>
@@ -189,7 +186,7 @@ function Category() {
                                     <span className="text-xs text-gray-500 ml-1">({product.stock ?? 0} in stock)</span>
                                 </div>
                                 <p className="text-2xl font-bold text-purple-600 mb-4">
-                                    Rs. {Math.floor(product.price * 100)}
+                                    {formatPrice(product.price * 100)}
                                 </p>
                                 <Button
                                     onClick={() => handleAddToCart(product)}

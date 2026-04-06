@@ -184,8 +184,8 @@ function Home() {
       <Navbar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <section className="relative pt-32 pb-20 overflow-hidden px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-0 grid lg:grid-cols-2 gap-12 items-center">
           <motion.div {...fadeIn}>
             <SectionTag>New Collection {currentYear}</SectionTag>
             <h1 className="text-5xl md:text-7xl font-bold leading-[0.95] mb-8 text-foreground">

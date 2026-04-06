@@ -25,7 +25,7 @@ function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
         {/* Logo */}
         <Link to="/" className="text-xl font-bold tracking-tight text-foreground">
@@ -111,7 +111,7 @@ function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
             transition={{ duration: 0.3 }}
             className="md:hidden overflow-hidden border-t border-border bg-card/95 backdrop-blur-lg"
           >
-            <div className="px-6 py-4 flex flex-col gap-2">
+            <div className="px-4 sm:px-6 py-4 flex flex-col gap-2">
               {mobileNavItems.map((item) => (
                 <NavLink
                   key={item}

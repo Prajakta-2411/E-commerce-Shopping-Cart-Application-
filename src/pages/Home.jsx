@@ -388,16 +388,16 @@ function Home() {
             </p>
             <form
               onSubmit={handleSubscribe}
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto w-full min-w-0"
             >
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 h-12 px-5 rounded-full border border-border bg-card text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full min-w-0 h-14 px-5 py-3 rounded-full border border-border bg-card text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              <Button variant="hero" className="h-12 px-8 rounded-full">
+              <Button variant="hero" className="w-full sm:w-auto h-14 px-8 rounded-full">
                 Subscribe
               </Button>
             </form>
@@ -456,10 +456,10 @@ function Home() {
               <h4 className="font-semibold mb-4 text-sm uppercase tracking-widest">Contact</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPin size={14} /> Mumbai, India
+                  <MapPin size={14} /> Pune, Maharshtra
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Phone size={14} /> +91 98765 43210
+                  <Phone size={14} /> +91 01223456789
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Mail size={14} /> hello@modernstore.in

@@ -20,6 +20,9 @@ function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
   const { items } = useSelector((state) => state.cart);
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
 
+  const desktopNavItems = ["Home", "Products", "Categories", "Orders", "Deals"];
+  const mobileNavItems = [...desktopNavItems, "Wishlist"];
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -31,12 +34,12 @@ function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {["Home", "Products", "Categories", "Orders", "Deals"].map((item) => (
+          {desktopNavItems.map((item) => (
             <NavLink
               key={item}
               to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
               className={({ isActive }) =>
-                `text-sm font-medium  hover:text-foreground transition-colors ${isActive ? "text-purple-500" : "text-muted-foreground"}`}
+                `text-sm font-medium hover:text-foreground transition-colors ${isActive ? "text-purple-500" : "text-muted-foreground"}`}
             >
               {item}
             </NavLink>
@@ -49,7 +52,7 @@ function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
           {/* Wishlist */}
           <Link
             to="/wishlist"
-            className="hidden sm:flex w-10 h-10 rounded-full bg-secondary items-center justify-center hover:bg-accent transition-colors relative"
+            className="hidden md:flex w-10 h-10 rounded-full bg-secondary items-center justify-center hover:bg-accent transition-colors relative"
           >
             <Heart size={18} className="text-muted-foreground" />
             {wishlistItems.length > 0 && (
@@ -109,15 +112,20 @@ function Navbar({ mobileMenuOpen, setMobileMenuOpen }) {
             className="md:hidden overflow-hidden border-t border-border bg-card/95 backdrop-blur-lg"
           >
             <div className="px-6 py-4 flex flex-col gap-2">
-              {["Home", "Products", "Categories", "Deals"].map((item) => (
-                <Link
+              {mobileNavItems.map((item) => (
+                <NavLink
                   key={item}
                   to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary px-4 py-3 rounded-xl transition-colors"
+                  className={({ isActive }) =>
+                    `text-sm font-medium px-4 py-3 rounded-xl transition-colors ${isActive
+                      ? "text-purple-500 bg-secondary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`
+                  }
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
-                </Link>
+                </NavLink>
               ))}
             </div>
           </motion.nav>

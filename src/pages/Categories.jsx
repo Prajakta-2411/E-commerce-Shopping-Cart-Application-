@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import Card from "../components/Card";
@@ -198,13 +199,13 @@ function Categories() {
                         <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
                             Visit our products page to search through our entire collection.
                         </p>
-                        <a
-                            href="/products"
+                        <Link
+                            to="/products"
                             className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-purple-700 text-white rounded-full font-semibold hover:bg-purple-800 transition-all duration-300"
                         >
                             View All Products
                             <ArrowRight size={18} />
-                        </a>
+                        </Link>
                     </motion.div>
                 </div>
             </section>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
-import { FaSearch, FaFilter } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+import { MdTune } from "react-icons/md";
+import { BsFilter } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/productSlice";
 
@@ -96,7 +98,7 @@ function Product() {
 
         <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
 
-        <FaFilter
+        <MdTune
           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer hover:text-purple-600"
           onClick={() => setShowFilter((prev) => !prev)}
         />
@@ -194,6 +196,7 @@ function Product() {
               title={product.title}
               price={product.price}
               rating={product.rating}
+              discountPercentage={product.discountPercentage || 0}
             />
           ))
         )}

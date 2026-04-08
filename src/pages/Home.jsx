@@ -337,6 +337,8 @@ function Home() {
                 title={prod.name}
                 key={prod.id}
                 rating={prod.rating}
+                oldPrice={prod.oldPrice}
+                discountPercentage={prod.discountPercentage || 0}
                 showAddToCart={true}
               />
             ))}

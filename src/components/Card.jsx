@@ -7,7 +7,7 @@ import { addToCart } from "../redux/cartSlice";
 import { toast } from "sonner";
 import { formatPrice } from "@/lib/utils";
 
-function Card({ img, title, price, productId, rating = 4, showAddToCart = true, badgeText, oldPrice }) {
+function Card({ img, title, price, productId, rating = 4, showAddToCart = true, badgeText, oldPrice, discountPercentage }) {
   if (productId == null) {
     return null;
   }
@@ -19,8 +19,18 @@ function Card({ img, title, price, productId, rating = 4, showAddToCart = true, 
   const imageSrc = img || "https://via.placeholder.com/300?text=No+Image";
   const displayPrice = Number(price) || 0;
   const displayRating = Number.isFinite(Number(rating)) ? rating : 0;
-  const displayOldPrice = Number(oldPrice) > displayPrice ? Number(oldPrice) : null;
-  const computedBadgeText = badgeText || null;
+
+  // Calculate oldPrice from discountPercentage if not provided
+  let displayOldPrice = Number(oldPrice) > displayPrice ? Number(oldPrice) : null;
+  if (!displayOldPrice && discountPercentage && Number(discountPercentage) > 0) {
+    displayOldPrice = Math.round(displayPrice / (1 - discountPercentage / 100));
+  }
+
+  // Compute badge text from badgeText or discountPercentage
+  let computedBadgeText = badgeText || null;
+  if (!computedBadgeText && discountPercentage && Number(discountPercentage) > 0) {
+    computedBadgeText = `${Math.round(discountPercentage)}% OFF`;
+  }
 
   const handleWishlist = (e) => {
     e.preventDefault();
@@ -36,7 +46,8 @@ function Card({ img, title, price, productId, rating = 4, showAddToCart = true, 
           title,
           price,
           rating,
-          oldPrice,
+          oldPrice: displayOldPrice,
+          discountPercentage,
         })
       );
       toast.success("Added to wishlist!");

@@ -145,6 +145,8 @@ function Wishlist() {
                                 title={item.title}
                                 price={item.price}
                                 rating={item.rating}
+                                oldPrice={item.oldPrice}
+                                discountPercentage={item.discountPercentage || 0}
                                 showAddToCart={true}
                             />
                         ))}

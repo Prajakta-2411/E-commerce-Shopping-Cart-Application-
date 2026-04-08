@@ -49,9 +49,8 @@ function Deals() {
     }, [targetTime]);
 
     const dealProducts = useMemo(() => {
-        return products
-            .filter((product) => product.discountPercentage >= 15)
-            .sort((a, b) => b.discountPercentage - a.discountPercentage)
+        return [...products] // ✅ clone array
+            .sort((a, b) => (b.discountPercentage || 0) - (a.discountPercentage || 0))
             .slice(0, 12);
     }, [products]);
 
@@ -169,8 +168,7 @@ function Deals() {
                                             title={product.title}
                                             price={product.price}
                                             rating={product.rating}
-                                            badgeText={`${Math.round(product.discountPercentage)}% OFF`}
-                                            oldPrice={oldPrice}
+                                            discountPercentage={product.discountPercentage} // ✅ ONLY THIS NEEDED
                                             showAddToCart={true}
                                         />
                                     </motion.div>

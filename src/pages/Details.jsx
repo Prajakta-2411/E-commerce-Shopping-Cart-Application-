@@ -99,9 +99,24 @@ function Details() {
                 {product.description}
               </p>
 
-              <p className="text-sm mt-4">
-                {formatPrice(product.price * 83)}
-              </p>
+              {product.discountPercentage && Number(product.discountPercentage) > 0 && (
+                <div className="mt-3 inline-block">
+                  <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {Math.round(product.discountPercentage)}% OFF
+                  </span>
+                </div>
+              )}
+
+              <div className="mt-4 flex items-center gap-2">
+                <p className="text-sm font-semibold">
+                  {formatPrice(product.price * 83)}
+                </p>
+                {product.discountPercentage && Number(product.discountPercentage) > 0 && (
+                  <p className="text-sm text-gray-400 line-through">
+                    {formatPrice((product.price / (1 - product.discountPercentage / 100)) * 83)}
+                  </p>
+                )}
+              </div>
 
               <div className="flex flex-wrap gap-3 mt-4">
 

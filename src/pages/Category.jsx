@@ -157,6 +157,11 @@ function Category() {
                         <Card key={product.id} className="group shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                             <CardContent className="p-6">
                                 <div className="relative aspect-square mb-4 overflow-hidden rounded-lg bg-gray-50">
+                                    {product.discountPercentage && Number(product.discountPercentage) > 0 && (
+                                        <div className="absolute left-3 top-3 rounded-full bg-purple-600 px-3 py-1 text-[11px] font-semibold uppercase text-white shadow-sm z-10">
+                                            {Math.round(product.discountPercentage)}% OFF
+                                        </div>
+                                    )}
                                     <img
                                         src={product.thumbnail || product.image || product.images?.[0]}
                                         alt={product.title}
@@ -185,9 +190,16 @@ function Category() {
                                     ))}
                                     <span className="text-xs text-gray-500 ml-1">({product.stock ?? 0} in stock)</span>
                                 </div>
-                                <p className="text-2xl font-bold text-purple-600 mb-4">
-                                    {formatPrice(product.price * 100)}
-                                </p>
+                                <div className="mb-4">
+                                    <p className="text-2xl font-bold text-purple-600">
+                                        {formatPrice(product.price * 100)}
+                                    </p>
+                                    {product.discountPercentage && Number(product.discountPercentage) > 0 && (
+                                        <p className="text-sm text-gray-400 line-through">
+                                            {formatPrice((product.price / (1 - product.discountPercentage / 100)) * 100)}
+                                        </p>
+                                    )}
+                                </div>
                                 <Button
                                     onClick={() => handleAddToCart(product)}
                                     className="w-full bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"

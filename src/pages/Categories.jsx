@@ -182,6 +182,8 @@ function Categories() {
                                     productId={product.id}
                                     title={product.title}
                                     price={product.price}
+                                    rating={product.rating}
+                                    discountPercentage={product.discountPercentage || 0}
                                 />
                             ))
                         )}
